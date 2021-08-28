@@ -5,7 +5,7 @@
         @csrf
 
         <div class="form-group">
-            <label for="title" class="form-label">{{ __('E-Mail Address') }}</label>
+            <label for="title" class="form-label">{{ __('Titre') }}</label>
 
             <input id="title" type="title" class="form-control @error('title') is-invalid @enderror" name="title"
                    value="{{ $title ?? old('title') }}" required autocomplete="title" autofocus>

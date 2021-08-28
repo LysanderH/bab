@@ -18,6 +18,19 @@
         </div>
 
         <div class="form-group">
+            <label for="group" class="form-label">{{ __('Groupe') }}</label>
+
+            <input id="group" type="text" class="form-control @error('group') is-invalid @enderror" name="group"
+                   value="{{ old('group') }}" required autocomplete="group" autofocus>
+
+            @error('group')
+                <p class="invalid-feedback" role="alert">
+                    {{ $message }}
+                </p>
+            @enderror
+        </div>
+
+        <div class="form-group">
             <label for="email" class="form-label">{{ __('E-Mail Address') }}</label>
             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email"
                    value="{{ old('email') }}" required autocomplete="email">
