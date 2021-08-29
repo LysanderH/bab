@@ -20,7 +20,7 @@ class CreateBooksTable extends Migration
             $table->string('isbn')->unique();
             $table->text('excerpt');
             $table->text('img');
-            $table->bigInteger('stock');
+            $table->integer('stock');
             $table->timestamps();
         });
     }

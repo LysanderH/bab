@@ -15,6 +15,7 @@ class CreateBacsTable extends Migration
     {
         Schema::create('bacs', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->timestamps();
         });
     }

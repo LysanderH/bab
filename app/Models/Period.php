@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Period extends Model
 {
     use HasFactory;
+
+    public function order()
+    {
+        return $this->hasOne(Order::class);
+    }
 }
