@@ -12,10 +12,14 @@
         @endisset
         {{ env('APP_NAME') }}
     </title>
+
+    @yield('styles')
 </head>
 
 <body>
     @yield('content')
 </body>
+
+@yield('scripts')
 
 </html>
