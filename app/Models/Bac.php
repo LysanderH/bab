@@ -9,6 +9,10 @@ class Bac extends Model
 {
     use HasFactory;
 
+    public $fillable = [
+        'name',
+    ];
+
     public function book()
     {
         return $this->hasOne(Book::class);

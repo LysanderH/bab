@@ -9,6 +9,8 @@ class Book extends Model
 {
     use HasFactory;
 
+    public $guarded = [];
+
     public function bac()
     {
         return $this->belongsTo(Bac::class);

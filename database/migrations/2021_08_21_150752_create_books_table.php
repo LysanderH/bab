@@ -17,10 +17,12 @@ class CreateBooksTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('author');
-            $table->string('isbn')->unique();
+            $table->string('ISBN')->unique();
             $table->text('excerpt');
-            $table->text('img');
+            $table->text('cover');
             $table->integer('stock');
+            $table->boolean('displayed')->default(true);
+            $table->float('price');
             $table->timestamps();
         });
     }

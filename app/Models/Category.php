@@ -9,6 +9,8 @@ class Category extends Model
 {
     use HasFactory;
 
+    public $guarded = [];
+
     public function book()
     {
         return $this->hasOne(Book::class);

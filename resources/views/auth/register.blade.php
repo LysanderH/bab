@@ -35,7 +35,7 @@
 
             <input id="avatar" type="file" class="form-control @error('avatar') is-invalid @enderror" name="avatar"
                    value="{{ old('avatar') }}" accept=".png, .jpg, .jpeg" required>
-            <div class="preview">
+            <div class="preview" id="preview">
                 <p>Aucune image a été téléversée.</p>
             </div>
 
@@ -86,4 +86,22 @@
             </button>
         </div>
     </form>
+    <a href="/login" class="link">J’ai déjà un compte.</a>
+@endsection
+
+
+@section('scripts')
+    <script>
+        const cover = document.querySelector('#avatar');
+        const preview = document.querySelector('#preview');
+
+        cover.addEventListener('change', function(e) {
+            preview.innerHTML = '';
+
+            const image = document.createElement('img');
+            image.src = URL.createObjectURL(event.target.files[0]);
+
+            preview.appendChild(image);
+        })
+    </script>
 @endsection

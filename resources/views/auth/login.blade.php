@@ -56,4 +56,5 @@
             @endif
         </div>
     </form>
+    <a href="/register" class="link">Je n’ai pas de compte.</a>
 @endsection
