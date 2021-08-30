@@ -1,9 +1,9 @@
 @extends('layout.app', ['title'=>'Tableau de bord'])
 
 @section('content')
-    <h1>Tableau de bord</h1>
+    <h1>Dashboard</h1>
+    <x-admin-menu />
     <nav class="nav">
-        <a href="{{ route('admin.book.create') }}" class="nav__link">Ajouter un livre</a>
     </nav>
 
     @include('livewire.table')

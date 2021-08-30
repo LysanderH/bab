@@ -17,6 +17,7 @@
 </head>
 
 <body>
+    @include('layout.success')
     @yield('content')
 </body>
 

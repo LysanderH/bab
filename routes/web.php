@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\UserController;
 use App\Http\Middleware\IsAdmin;
 use App\Models\Order;
 use App\Models\Status;
@@ -27,9 +29,11 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'isAdmin'])->group(f
             'orders' => Order::with('user', 'status')->paginate(10),
             'status' => Status::all(),
         ]);
-    });
+    })->name('dashboard');
 
     Route::resource('book', BookController::class);
+    Route::resource('order', OrderController::class);
+    Route::resource('user', UserController::class);
 });
 
 Route::prefix('student')->name('student.')->middleware(['auth', 'isStudent'])->group(function () {
