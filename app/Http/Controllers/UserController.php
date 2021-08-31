@@ -133,8 +133,12 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(Request $request, User $user)
     {
-        //
+        User::destroy($user->id);
+
+        $request->session()->flash('success', 'L’utilisateur à bien été supprimé.');
+
+        return redirect()->back();
     }
 }

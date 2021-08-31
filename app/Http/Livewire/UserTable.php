@@ -10,14 +10,37 @@ class UserTable extends Component
 {
     use WithPagination;
 
-    public $term;
+    public $term = '';
+    public $perPage = 25;
+    public $sortBy = 'name';
+    public $sortDirection = 'asc';
+
+    protected $queryString = [
+        'term' => ['except' => ''],
+        'sortBy' => ['except' => ''],
+        'sortDirection',
+        'perPage',
+    ];
+
+    public function sortBy($field)
+    {
+        if ($this->sortDirection == 'asc') {
+            $this->sortDirection = 'desc';
+        } else {
+            $this->sortDirection = 'asc';
+        }
+
+        return $this->sortBy = $field;
+    }
 
     public function render()
     {
         return view('livewire.user-table', [
             'users' => User::when($this->term, function ($query, $term) {
                 return $query->where('name', 'LIKE', "%$term%");
-            })->paginate(20),
+            })->when($this->sortBy, function ($query, $sortBy) {
+                return $query->orderBy($sortBy, $this->sortDirection);
+            })->paginate($this->perPage),
         ]);
     }
 }
