@@ -11,6 +11,6 @@ class Period extends Model
 
     public function order()
     {
-        return $this->hasOne(Order::class);
+        return $this->hasMany(Order::class);
     }
 }

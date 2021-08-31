@@ -11,6 +11,6 @@ class Status extends Model
 
     public function order()
     {
-        return $this->hasOne(Status::class);
+        return $this->hasMany(Order::class);
     }
 }

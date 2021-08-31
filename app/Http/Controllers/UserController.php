@@ -99,9 +99,9 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show($id)
     {
-        //
+        return view('admin.user.show', ['user' => User::with('orders.books', 'orders.status')->where('id', $id)->first()]);
     }
 
     /**
@@ -112,7 +112,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('admin.user.edit', ['user' => $user]);
     }
 
     /**
@@ -124,7 +124,50 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'group' => ['required', 'string', 'max:4'],
+            'email' => [
+                'required',
+                'string',
+                'email',
+                'max:255',
+                Rule::unique('users')->ignore($user),
+            ],
+            'avatar' => 'image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+
+        if (key_exists('avatar', $validated)) {
+            if (fileExists($validated['avatar'])) {
+                $image = $validated['avatar'];
+
+                $destinationPath = public_path('/storage/avatars');
+
+                if (!file_exists($destinationPath)) {
+                    mkdir($destinationPath, 666, true);
+                }
+
+                $imgFile = Image::make($image->getRealPath());
+                $smallAvatar = Image::make($image->getRealPath());
+
+                $avatarName = $user->id . '_avatar' . time() . '.jpg';
+
+                $imgFile->fit(250, 250)->save($destinationPath . '/' . $avatarName);
+                $smallAvatar->fit(50, 50)->save($destinationPath . '/small_' . $avatarName);
+            }
+        }
+
+        $user = User::where('id', $user->id)->update([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'group' => $validated['group'],
+            'avatar' => $avatarName ?? $user->avatar,
+            'password' => isset($validated['password']) ? Hash::make($validated['password']) : $user->password,
+        ]);
+
+        $request->session()->flash('success', 'L’utilisateur à bien été modifié.');
+
+        return redirect(route('admin.user.index'));
     }
 
     /**
