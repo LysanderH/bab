@@ -1,13 +1,22 @@
 @extends('layout.app', ['title'=>'Liste des livres'])
 
 @section('content')
-    <ul class="list">
-        <li class="list__item"><a href="" class="list__link">
-                <article class="book-item" aria-label="Titre du livre">
-                    <h2 class="book-item__heading" role="heading" aria-level="2">Titre du livre</h2>
-                    <img src="" alt="Couverture du livre Titre du livre">
-                </article>
-            </a>
-        </li>
-    </ul>
+    <h1>Liste des livres</h1>
+    <x-admin-menu />
+
+    <section class="controls" aria-label="Navigation de la ressource">
+        <h2 class="controls__heading sr-only" role="heading" aria-level="2">Navigation de la ressource</h2>
+        <div class="controls__wrapper">
+            <a href="{{ route('admin.book.create') }}" class="controls__link">Ajouter un livre</a>
+        </div>
+    </section>
+
+    <livewire:book-table />
+@endsection
+@section('styles')
+    @livewireStyles
+@endsection
+
+@section('scripts')
+    @livewireScripts
 @endsection

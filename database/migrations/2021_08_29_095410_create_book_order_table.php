@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOrderUserTable extends Migration
+class CreateBookOrderTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateOrderUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('order_user', function (Blueprint $table) {
+        Schema::create('book_order', function (Blueprint $table) {
+            $table->foreignId('book_id')->onDelete('cascade');
             $table->foreignId('order_id')->onDelete('cascade');
-            $table->foreignId('user_id')->onDelete('cascade');
+            $table->float('current_price');
+            $table->integer('amount');
         });
     }
 
@@ -26,6 +28,6 @@ class CreateOrderUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('order_user');
+        Schema::dropIfExists('book_order');
     }
 }

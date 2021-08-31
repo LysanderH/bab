@@ -16,6 +16,11 @@ class Book extends Model
         return $this->belongsTo(Bac::class);
     }
 
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class)->withPivot('current_price', 'amount');
+    }
+
     public function category()
     {
         return $this->belongsTo(Category::class);
