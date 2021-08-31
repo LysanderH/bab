@@ -1,7 +1,8 @@
-@extends('layout.app', ['title'=>'Créer un compte'])
+@extends('layout.app', ['title'=>'Créer un utilisateur'])
 
 @section('content')
-    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
+    <h1>Créer un utilisateur</h1>
+    <form method="POST" action="{{ route('admin.user.store') }}" enctype="multipart/form-data">
         @csrf
 
         <div class="form-group">

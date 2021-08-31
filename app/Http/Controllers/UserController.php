@@ -21,7 +21,7 @@ class UserController extends Controller
     public function index()
     {
         return view('admin.user.index', [
-            'users' => User::all(),
+            // 'users' => User::paginate(2),
         ]);
     }
 
@@ -32,7 +32,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.user.create');
     }
 
     /**
@@ -43,7 +43,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        Validator::make($request, [
+        $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'group' => ['required', 'string', 'max:4'],
             'email' => [
@@ -55,17 +55,17 @@ class UserController extends Controller
             ],
             'password' => 'string',
             'avatar' => 'image|mimes:jpeg,png,jpg|max:2048',
-        ])->validate();
-
-        $user = User::create([
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'group' => $request['group'],
-            'password' => Hash::make($request['password']),
         ]);
 
-        if (fileExists($request['avatar'])) {
-            $image = $request['avatar'];
+        $user = User::create([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'group' => $validated['group'],
+            'password' => Hash::make($validated['password']),
+        ]);
+
+        if (fileExists($validated['avatar'])) {
+            $image = $validated['avatar'];
 
             $destinationPath = public_path('/storage/avatars');
 
@@ -86,7 +86,7 @@ class UserController extends Controller
             ]);
         }
 
-        Password::sendResetLink($request['email']);
+        Password::sendResetLink($request->only(['email']));
 
         $request->session()->flash('success', 'L’utilisateur à bien été ajouté.');
 
