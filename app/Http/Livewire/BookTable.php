@@ -35,6 +35,8 @@ class BookTable extends Component
         return $this->sortBy = $field;
     }
 
+
+
     public function render()
     {
         // foreach ($books as $book) {

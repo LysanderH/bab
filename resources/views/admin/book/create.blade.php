@@ -10,7 +10,7 @@
         <div class="form-group">
             <label for="ISBN" class="form-label">{{ __('ISBN') }}</label>
 
-            <input id="ISBN" type="ISBN" class="form-control @error('ISBN') is-invalid @enderror" name="ISBN"
+            <input id="ISBN" type="text" class="form-control @error('ISBN') is-invalid @enderror" name="ISBN"
                    value="{{ $ISBN ?? old('ISBN') }}" required autocomplete="ISBN" autofocus
                    placeholder="978-2-7433-0482-9">
 
@@ -24,7 +24,7 @@
         <div class="form-group">
             <label for="title" class="form-label">{{ __('Titre') }}</label>
 
-            <input id="title" type="title" class="form-control @error('title') is-invalid @enderror" name="title"
+            <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title"
                    value="{{ $title ?? old('title') }}" required autocomplete="title" placeholder="Règles typographiques">
 
             @error('title')
@@ -37,7 +37,7 @@
         <div class="form-group">
             <label for="author" class="form-label">{{ __('Auteur') }}</label>
 
-            <input id="author" type="author" class="form-control @error('author') is-invalid @enderror" name="author"
+            <input id="author" type="text" class="form-control @error('author') is-invalid @enderror" name="author"
                    value="{{ $author ?? old('author') }}" required autocomplete="author"
                    placeholder="Imprimerie Nationale">
 
@@ -51,7 +51,7 @@
         <div class="form-group">
             <label for="category" class="form-label">{{ __('Option') }}</label>
 
-            <select id="category" type="category" class="form-control @error('category') is-invalid @enderror"
+            <select id="category" class="form-control @error('category') is-invalid @enderror"
                     name="category"
                     required>
                 @foreach ($categories as $cat)
@@ -70,7 +70,7 @@
         <div class="form-group">
             <label for="bac" class="form-label">{{ __('Option') }}</label>
 
-            <select id="bac" type="bac" class="form-control @error('bac') is-invalid @enderror"
+            <select id="bac" class="form-control @error('bac') is-invalid @enderror"
                     name="bac"
                     required>
                 @foreach ($bacs as $bac)

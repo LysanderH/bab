@@ -6,12 +6,14 @@ use App\Mail\OrderReadyEmail;
 use App\Models\Book;
 use App\Models\Order;
 use App\Models\Status;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 
-class Table extends Component
+class UserOrderTable extends Component
 {
+    public $user;
+    public $statuses;
+
     public function changeStatus($orderId, $statusId)
     {
         $order = Order::with('books', 'user')->where('id', (int)$orderId)->first();
@@ -38,9 +40,6 @@ class Table extends Component
 
     public function render()
     {
-        return view('livewire.table', [
-            'orders' => Order::with('user', 'status')->paginate(10),
-            'statuses' => Status::all(),
-        ]);
+        return view('livewire.user-order-table');
     }
 }

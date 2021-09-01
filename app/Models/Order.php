@@ -9,6 +9,8 @@ class Order extends Model
 {
     use HasFactory;
 
+    public $guarded = [];
+
     public function books()
     {
         return $this->belongsToMany(Book::class)->withPivot('current_price', 'amount');

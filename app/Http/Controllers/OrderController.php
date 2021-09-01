@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\OrderReadyEmail;
+use App\Models\Book;
 use App\Models\Order;
+use App\Models\Period;
+use App\Models\Status;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -24,7 +30,11 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.order.create', [
+            'users' => User::all(),
+            'books' => Book::all(),
+            'statuses' => Status::all(),
+        ]);
     }
 
     /**
@@ -35,7 +45,43 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $amountArray = $request->amount;
+        $total = 0;
+
+        foreach ($amountArray as $key => $amount) {
+            if ((int) $amount > 0) {
+                $total = $total + (Book::where('id', (int)$key)->first()->price * $amount);
+            }
+        }
+
+        $order = Order::create([
+            'total' => $total,
+            'user_id' => $request->user,
+            'status_id' => $request->status,
+            'period_id' => Period::where('active', true)->first()->id,
+        ]);
+
+        foreach ($amountArray as $key => $amount) {
+            if ((int) $amount > 0) {
+                $order->books()->attach($key, ['amount' => $amount, 'current_price' => Book::where('id', (int)$key)->first()->price]);
+            }
+        }
+
+        if ($request->status == 3) {
+            Mail::to($order->user->email)->send(new OrderReadyEmail($order));
+        }
+
+        if ($request->status == 4) {
+            foreach ($order->books as $book) {
+                Book::where('id', $book->id)->first()->update([
+                    'stock' => $book->stock - $book->pivot->amount,
+                ]);
+            }
+        }
+
+        $request->session()->flash('success', 'La commande a été ajouté.');
+
+        return redirect(route('admin.order.index'));
     }
 
     /**

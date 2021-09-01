@@ -3,10 +3,14 @@
 @section('content')
     <h1>Dashboard</h1>
     <x-admin-menu />
-    <nav class="nav">
+    <nav class="controls" aria-label="Navigation de la ressource">
+        <h2 class="controls__heading sr-only" role="heading" aria-level="2">Navigation du dashboard</h2>
+        <div class="controls__wrapper">
+            <a href="{{ route('admin.period.create') }}" class="controls__link">Commencer une nouvelle période</a>
+        </div>
     </nav>
 
-    @include('livewire.table')
+    <livewire:table />
 @endsection
 
 @section('styles')

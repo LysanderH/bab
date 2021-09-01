@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Status;
 use App\Models\User;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
@@ -101,7 +102,10 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        return view('admin.user.show', ['user' => User::with('orders.books', 'orders.status')->where('id', $id)->first()]);
+        return view('admin.user.show', [
+            'user' => User::with('orders.books', 'orders.status')->where('id', $id)->first(),
+            'statuses' => Status::all(),
+        ]);
     }
 
     /**

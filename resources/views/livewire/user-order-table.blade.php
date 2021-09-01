@@ -1,46 +1,45 @@
-<div>
+<section class="user-orders" aria-label="Commandes">
+    <h3 class="user-orders__heading" role="heading" aria-level="3">Commandes</h3>
     @if (session()->has('message'))
-
         <div class="alert alert-success">
-
             {{ session('message') }}
-
         </div>
-
     @endif
     <table class="table">
         <thead class="table__head">
             <tr class="table__row">
                 <th class="talbe__heading" scope="col">
-                    <a href="" class="table__link">Nom</a>
+                    &nbsp;
                 </th>
                 <th class="talbe__heading" scope="col">
-                    <a href="" class="table__link">Total</a>
+                    Total
                 </th>
                 <th class="talbe__heading" scope="col">
-                    <a href="" class="table__link">Status</a>
+                    Status
                 </th>
             </tr>
         </thead>
         <tbody class="table__body">
-            @if (count($orders))
-                @foreach ($orders as $order)
+            @if (count($user->orders))
+                @foreach ($user->orders as $order)
                     <tr class="table__row">
-                        <td class="talbe__data">{{ $order->user->name }}</td>
+                        <td class="talbe__data">{{ $loop->iteration }}</td>
                         <td class="talbe__data">@currency($order->total)</td>
                         <td class="talbe__data">
-                            <form action="update/order" class="table__form form">
-                                <input type="hidden" value="$order->id">
+                            <form action="admin/update/order" class="table__form form">
+                                @csrf
+                                @method('PUT')
+                                <input type="hidden" value="{{ $order->id }}">
                                 <select name="status"
                                         wire:change="changeStatus({{ $order->id }}, $event.target.value)">
                                     @foreach ($statuses as $status)
                                         <option value="{{ $status->id }}"
                                                 @if ($status->id === $order->status_id) selected @endif>{{ $status->name }}</option>
                                     @endforeach
+                                    <noscript>
+                                        <button type="submit">Modifier</button>
+                                    </noscript>
                                 </select>
-                                <noscript>
-                                    <button type="submit">Modifier</button>
-                                </noscript>
                             </form>
                         </td>
                     </tr>
@@ -52,8 +51,6 @@
                     </td>
                 </tr>
             @endif
-
-
         </tbody>
     </table>
-</div>
+</section>

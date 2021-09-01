@@ -1,7 +1,18 @@
 <div>
+    @if (session()->has('message'))
+
+        <div class="alert alert-success">
+
+            {{ session('message') }}
+
+        </div>
+
+    @endif
     <form class="search" method="GET">
         <input type="search" name="term" class="search__control" wire:model="term" placeholder="Rechercher">
-        <button role="button" type="submit">Rechercher</button>
+        <noscript>
+            <button role="button" type="submit">Rechercher</button>
+        </noscript>
     </form>
     <form class="per-page" method="GET">
         <select name="perPage" class="per-page__control" wire:model="perPage">
@@ -19,24 +30,17 @@
                     &nbsp;
                 </th>
                 <th class="talbe__heading" scope="col">
-                    &nbsp;
+                    Nom
                 </th>
                 <th class="talbe__heading" scope="col">
-                    <a href="?sortBy=title"
+                    <a href="?sortBy=total"
                        class="table__link"
-                       wire:click.prevent="sortBy('title')">Titre</a>
+                       wire:click.prevent="sortBy('total')">Total</a>
                 </th>
                 <th class="talbe__heading" scope="col">
-                    <a href="?sortBy=author" class="table__link" wire:click.prevent="sortBy('author')">Auteur</a>
-                </th>
-                <th class="talbe__heading" scope="col">
-                    Stock
-                </th>
-                <th class="talbe__heading" scope="col">
-                    Prix
-                </th>
-                <th class="talbe__heading" scope="col">
-                    ISBN
+                    <a href="?sortBy=status"
+                       class="table__link"
+                       wire:click.prevent="sortBy('status')">Status</a>
                 </th>
                 <th class="talbe__heading" scope="col">
                     Actions
@@ -48,25 +52,27 @@
                 @foreach ($orders as $order)
                     <tr class="table__row">
                         <td class="talbe__data">{{ $loop->iteration }}</td>
+                        <td class="talbe__data">{{ $order->name }}</td>
                         <td class="talbe__data">
-                            <img src="{{ asset('storage/covers/small_' . $order->cover) }}" alt="Foto de profil"
-                                 width="250"
-                                 height="250">
-                        </td>
-                        <td class="talbe__data">{{ $order->title }}</td>
-                        <td class="talbe__data">
-                            {{ $order->author }}
+                            {{ $order->total }}
                         </td>
                         <td class="talbe__data">
-                            {{ $order->stock }}
+                            <form action="update/order" class="table__form form">
+                                @csrf
+                                @method('PUT')
+                                <input type="hidden" value="{{ $order->id }}">
+                                <select name="status"
+                                        wire:change="changeStatus({{ $order->id }}, $event.target.value)">
+                                    @foreach ($statuses as $status)
+                                        <option value="{{ $status->id }}"
+                                                @if ($status->id === $order->status_id) selected @endif>{{ $status->name }}</option>
+                                    @endforeach
+                                </select>
+                                <noscript>
+                                    <button type="submit">Modifier</button>
+                                </noscript>
+                            </form>
                         </td>
-                        <td class="talbe__data">
-                            @currency($order->total)
-                        </td>
-
-                        {{-- <td class="talbe__data">
-                            {{ $sum_ordered }}
-                        </td> --}}
                         <td class="talbe__data talbe__data--action">
                             <a href="{{ route('admin.order.show', ['order' => $order->id]) }}"
                                class="table__link table__link--show"><span
@@ -84,7 +90,7 @@
                 @endforeach
             @else
                 <tr class="table__row">
-                    <td class="talbe__data table__data--no-data" colspan="3">
+                    <td class="talbe__data table__data--no-data" colspan="5">
                         Aucun livre existe
                     </td>
                 </tr>
