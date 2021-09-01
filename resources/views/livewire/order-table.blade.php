@@ -77,13 +77,13 @@
                             <a href="{{ route('admin.order.show', ['order' => $order->id]) }}"
                                class="table__link table__link--show"><span
                                       class="sr-only">Voir
-                                    le livre</span></a>
+                                    la commande</span></a>
                             <form action="{{ route('admin.order.destroy', ['order' => $order->id]) }}" method="POST">
                                 @csrf
                                 @method('delete')
                                 <button type="submit" class="table__link table__link--delete"><span
                                           class="sr-only">Supprimer
-                                        le livre</span></button>
+                                        la commande</span></button>
                             </form>
                         </td>
                     </tr>

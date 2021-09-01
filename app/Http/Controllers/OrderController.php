@@ -92,7 +92,9 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        return view('admin.order.show', [
+            'order' => Order::with('user', 'status')->where('id', $order->id)->first(),
+        ]);
     }
 
     /**
@@ -103,7 +105,12 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        //
+        return view('admin.order.edit', [
+            'order' => Order::with('user', 'status', 'books')->where('id', $order->id)->first(),
+            'users' => User::all(),
+            'books' => Book::all(),
+            'statuses' => Status::all(),
+        ]);
     }
 
     /**
@@ -115,7 +122,47 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        //
+        $amountArray = $request->amount;
+        $total = 0;
+
+        foreach ($amountArray as $key => $amount) {
+            if ((int) $amount > 0) {
+                $total = $total + (Book::where('id', (int)$key)->first()->price * $amount);
+            }
+        }
+
+        Order::where('id', $order->id)->update([
+            'total' => $total,
+            'user_id' => $request->user,
+            'status_id' => $request->status,
+            'period_id' => Period::where('active', true)->first()->id,
+        ]);
+
+        foreach ($order->books as $book) {
+            $order->books()->detach($book->id);
+        }
+
+        foreach ($amountArray as $key => $amount) {
+            if ((int) $amount > 0) {
+                $order->books()->attach($key, ['amount' => $amount, 'current_price' => Book::where('id', (int)$key)->first()->price]);
+            }
+        }
+
+        if ($request->status == 3) {
+            Mail::to($order->user->email)->send(new OrderReadyEmail($order));
+        }
+
+        if ($request->status == 4) {
+            foreach ($order->books as $book) {
+                Book::where('id', $book->id)->first()->update([
+                    'stock' => $book->stock - $book->pivot->amount,
+                ]);
+            }
+        }
+
+        $request->session()->flash('success', 'La commande a été modifié.');
+
+        return redirect(route('admin.order.index'));
     }
 
     /**
@@ -124,8 +171,12 @@ class OrderController extends Controller
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Order $order)
+    public function destroy(Order $order, Request $request)
     {
-        //
+        Order::destroy($order->id);
+
+        $request->session()->flash('success', 'La commande a bien été supprimé.');
+
+        return redirect()->back();
     }
 }
