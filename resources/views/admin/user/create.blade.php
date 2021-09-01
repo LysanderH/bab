@@ -87,7 +87,6 @@
             </button>
         </div>
     </form>
-    <a href="/login" class="link">J’ai déjà un compte.</a>
 @endsection
 
 

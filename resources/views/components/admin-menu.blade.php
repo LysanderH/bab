@@ -5,5 +5,6 @@
         <a href="{{ route('admin.book.index') }}" class="nav__link">Livres</a>
         <a href="{{ route('admin.user.index') }}" class="nav__link">Utilisateurs</a>
         <a href="{{ route('admin.order.index') }}" class="nav__link">Commandes</a>
+        <a href="{{ route('admin.setting.index') }}" class="nav__link">Préférences</a>
     </div>
 </nav>

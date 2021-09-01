@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PeriodController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\IsAdmin;
 use App\Models\Order;
@@ -34,6 +36,10 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'isAdmin'])->group(f
     Route::resource('book', BookController::class);
     Route::resource('order', OrderController::class);
     Route::resource('user', UserController::class);
+    Route::resource('period', PeriodController::class);
+
+    Route::get('settings', [SettingController::class, 'index'])->name('setting.index');
+    Route::post('settings', [SettingController::class, 'update'])->name('setting.update');
 });
 
 Route::prefix('student')->name('student.')->middleware(['auth', 'isStudent'])->group(function () {
