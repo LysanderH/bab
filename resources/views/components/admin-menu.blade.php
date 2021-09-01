@@ -6,5 +6,13 @@
         <a href="{{ route('admin.user.index') }}" class="nav__link">Utilisateurs</a>
         <a href="{{ route('admin.order.index') }}" class="nav__link">Commandes</a>
         <a href="{{ route('admin.setting.index') }}" class="nav__link">Préférences</a>
+        <a href="{{ route('logout') }}"
+           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            Logout
+        </a>
+
+        <form id="logout-form" action="{{ route('logout') }}" method="POST">
+            @csrf
+        </form>
     </div>
 </nav>
