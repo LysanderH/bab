@@ -1,0 +1,13 @@
+.header {
+    width: 100%;
+    padding: 1.5rem 5%;
+    background-color: $black;
+
+    &__wrapper {
+        max-width: $max-width-desktop;
+    }
+
+    &__heading {
+        @include franklin(32px, $white);
+    }
+}

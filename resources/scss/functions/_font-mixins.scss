@@ -1,0 +1,42 @@
+// Font
+@mixin baskerville($size: false, $colour: $text-color, $weight: false, $lh: false) {
+    font-family: 'Libre Baskerville', serif;
+
+    @if $size {
+        font-size: $size;
+        font-size: calculateRem($size);
+    }
+
+    @if $colour {
+        color: $colour;
+    }
+
+    @if $weight {
+        font-weight: $weight;
+    }
+
+    @if $lh {
+        line-height: $lh;
+    }
+}
+
+@mixin franklin($size: false, $colour: false, $weight: false, $lh: false) {
+    font-family: 'Libre Franklin', sans-serif;
+
+    @if $size {
+        font-size: $size;
+        font-size: calculateRem($size);
+    }
+
+    @if $colour {
+        color: $colour;
+    }
+
+    @if $weight {
+        font-weight: $weight;
+    }
+
+    @if $lh {
+        line-height: $lh;
+    }
+}

@@ -1,0 +1,26 @@
+// Settings
+@import "settings/variables";
+@import "settings/colors";
+
+// Functions & mixins
+@import "functions/calculation-helpers-rem-pc";
+@import "functions/screen-reader";
+@import "functions/clearfix";
+@import "functions/font-mixins";
+@import "functions/width";
+@import "functions/margin-auto";
+@import "functions/pseudo";
+@import "functions/media-queries";
+@import "functions/btn-reset";
+
+// Generic
+@import "generic/reset";
+@import "generic/box-sizing";
+
+// Elements or base
+@import "elements/base";
+@import "elements/fonts";
+
+// Components
+@import "components/header";
+@import "components/form";

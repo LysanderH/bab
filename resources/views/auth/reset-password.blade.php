@@ -1,7 +1,12 @@
 @extends('layout.app', ['title'=>'Réinitialiser le mot de passe'])
 
 @section('content')
-    <form method="POST" action="{{ route('password.update') }}">
+    <header class="header">
+        <div class="header__wrapper">
+            <h1 class="header__heading">Book a Book <span class="sr-only">- Se connecter</span></h1>
+        </div>
+    </header>
+    <form method="POST" action="{{ route('password.update') }}" class="form">
         @csrf
 
         <input type="hidden" name="token" value="{{ $request->token }}">

@@ -1,4 +1,5 @@
 const mix = require('laravel-mix');
+require('laravel-mix-criticalcss');
 
 /*
  |--------------------------------------------------------------------------
@@ -12,6 +13,21 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        //
-    ]);
+    .sass('resources/scss/app.scss', 'public/css/app.css')
+    .criticalCss({
+        enabled: mix.inProduction(),
+        paths: {
+            base: 'https://bab.lysander-hans.com',
+            templates: './resources/css',
+            suffix: '_critical.min'
+        },
+        urls: [
+            { url: 'blog', template: 'blog' },
+        ],
+        options: {
+            minify: true,
+        },
+    })
+    .options({
+        processCssUrls: false
+    });

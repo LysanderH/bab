@@ -1,0 +1,118 @@
+.btn {
+    @include btn-reset;
+    text-decoration: none;
+    @include franklin(16px, $white);
+    background-color: $button;
+    padding: .5rem 1rem;
+    transition: background-color .2s ease-in-out;
+    margin-bottom: .6rem;
+
+    &:hover {
+        background-color: $button-hover;
+    }
+}
+
+.btn-submit {
+    align-self: flex-end;
+}
+
+.form-check {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.form-check-input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.form-check-checkbox {
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border: 1px solid $input-border;
+    border-radius: 5px;
+    margin-right: .2rem;
+}
+
+.form-check-label {
+    @include franklin(16px, $text-color);
+}
+
+.form-check:hover input~.form-check-checkbox {
+    background-color: #ccc;
+}
+
+.form-check input:checked~.form-check-checkbox {
+    background-color: $button;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg version='1.1' id='Ebene_1' xmlns='http://www.w3.org/2000/svg' x='0' y='0' viewBox='0 0 24 24' xml:space='preserve'%3E%3Cstyle%3E%3C/style%3E%3Cpath d='M9 19c-.3 0-.5-.1-.7-.3l-5-5c-.4-.4-.4-1 0-1.4s1-.4 1.4 0L9 16.6 19.3 6.3c.4-.4 1-.4 1.4 0s.4 1 0 1.4l-11 11c-.2.2-.4.3-.7.3z' fill='%23333'/%3E%3C/svg%3E") no-repeat;
+}
+
+.form-control {
+    @include franklin(16px, $text-color);
+    margin-bottom: .3rem;
+    border: 1px solid $input-border;
+    padding: .3rem .6rem;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: .6rem;
+}
+
+.form-label {
+    @include franklin(16px);
+    margin-bottom: .3rem;
+}
+
+.invalid-feedback {
+    @include franklin(16px, $error, $lh: 1.5);
+}
+
+.link {
+    margin-bottom: .7rem;
+    text-align: center;
+    @include franklin(16px, $link);
+
+    transition: color .2s ease-in-out;
+
+    &:hover {
+        color: $link-hover;
+    }
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+    margin: 2rem auto;
+}
+
+.is-invalid {
+    border-color: $error;
+}
+
+.preview {
+    margin: .3rem auto;
+    width: 250px;
+    height: 250px;
+    border: 1px solid $input-border;
+    border-radius: 5px;
+    overflow: hidden;
+
+    img {
+        width: auto;
+        height: 250px;
+        border-radius: 5px;
+
+    }
+}
