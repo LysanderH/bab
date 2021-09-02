@@ -22,6 +22,9 @@
                             &nbsp;
                         </th>
                         <th class="talbe__heading" scope="col">
+                            ISBN
+                        </th>
+                        <th class="talbe__heading" scope="col">
                             Titre
                         </th>
                         <th class="talbe__heading" scope="col">
@@ -29,9 +32,6 @@
                         </th>
                         <th class="talbe__heading" scope="col">
                             Prix
-                        </th>
-                        <th class="talbe__heading" scope="col">
-                            ISBN
                         </th>
                     </tr>
                 </thead>
@@ -53,7 +53,8 @@
                                     {{ $book->author }}
                                 </td>
                                 <td class="talbe__data">
-                                    @currency($book->pivot->price)
+                                    @dump($book)
+                                    @currency($book->pivot->current_price)
                                 </td>
                             </tr>
                         @endforeach

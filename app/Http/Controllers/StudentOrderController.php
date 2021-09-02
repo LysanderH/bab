@@ -18,8 +18,12 @@ class StudentOrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $orders = Order::with('books')->where('user_id', $request->user()->id)->orderByDesc('created_at')->get();
+        return view('student.order.index', [
+            'orders' => $orders
+        ]);
     }
 
     /**
