@@ -8,7 +8,7 @@
         <a href="{{ route('admin.setting.index') }}" class="nav__link">Préférences</a>
         <a href="{{ route('logout') }}"
            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-            Logout
+            Se déconnecter
         </a>
 
         <form id="logout-form" action="{{ route('logout') }}" method="POST">

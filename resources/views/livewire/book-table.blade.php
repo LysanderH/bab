@@ -66,9 +66,6 @@
                         <td class="talbe__data">
                             {{ $book->ISBN }}
                         </td>
-                        {{-- <td class="talbe__data">
-                            {{ $sum_ordered }}
-                        </td> --}}
                         <td class="talbe__data talbe__data--action">
                             <a href="{{ route('admin.book.show', ['book' => $book->id]) }}"
                                class="table__link table__link--show"><span

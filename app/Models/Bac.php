@@ -13,8 +13,8 @@ class Bac extends Model
         'name',
     ];
 
-    public function book()
+    public function books()
     {
-        return $this->hasOne(Book::class);
+        return $this->hasMany(Book::class);
     }
 }

@@ -4,10 +4,13 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PeriodController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\StudentOrderController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\IsAdmin;
 use App\Models\Order;
+use App\Models\Period;
 use App\Models\Status;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,6 +47,11 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'isAdmin'])->group(f
 
 Route::prefix('student')->name('student.')->middleware(['auth', 'isStudent'])->group(function () {
     Route::get('dashboard', function () {
-        return view('student.dashboard');
-    });
+        return view('student.dashboard', [
+            'period' => Period::where('active', true)->first(),
+            'order' => Order::with('books')->where('user_id', Auth::user()->id)->latest()->first(),
+        ]);
+    })->name('dashboard');
+    Route::resource('order', StudentOrderController::class);
+    Route::post('order/add', [StudentOrderController::class, 'add'])->name('order.add');
 });

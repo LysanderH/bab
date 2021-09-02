@@ -18,6 +18,7 @@
 
 <body>
     @include('layout.success')
+    @include('layout.error')
     @yield('content')
 </body>
 
