@@ -108,6 +108,10 @@
     border: 1px solid $input-border;
     border-radius: 5px;
     overflow: hidden;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     img {
         width: auto;

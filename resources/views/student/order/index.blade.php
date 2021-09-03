@@ -2,8 +2,12 @@
 
 @section('content')
     <header class="header">
-        <h1>Mes commandes</h1>
-        <x-user-menu />
+        <div class="header__wrapper">
+            <h1 class="header__heading"><a href="{{ route('student.dashboard') }}" class="header__link">Book a Book</a>
+                <span class="sr-only">- Mes commandes</span>
+            </h1>
+            <x-user-menu />
+        </div>
     </header>
     <main>
         <section class="controls" aria-label="Navigation de la ressource">
@@ -12,47 +16,6 @@
                 <a href="{{ route('student.order.create') }}" class="controls__link">Passer une commande</a>
             </div>
         </section>
-        <table class="table">
-            <thead class="table__head">
-                <tr class="table__row">
-                    <th class="talbe__heading" scope="col">
-                        &nbsp;
-                    </th>
-                    <th class="talbe__heading" scope="col">
-                        Date
-                    </th>
-                    <th class="talbe__heading" scope="col">
-                        Total
-                    </th>
-                    <th class="talbe__heading" scope="col">
-                        Status
-                    </th>
-                </tr>
-            </thead>
-            <tbody class="table__body" wire:loading.class.delay="loading">
-                @if (count($orders))
-                    @foreach ($orders as $order)
-                        <tr class="table__row">
-                            <td class="talbe__data">{{ $loop->iteration }}</td>
-                            <td class="talbe__data">{{ $order->name }}</td>
-                            <td class="talbe__data">
-                                @currency($order->total)
-                            </td>
-                            <td class="talbe__data">
-                                {{ $order->status->name }}
-                            </td>
-                        </tr>
-                    @endforeach
-                @else
-                    <tr class="table__row">
-                        <td class="talbe__data table__data--no-data" colspan="5">
-                            Aucun livre existe
-                        </td>
-                    </tr>
-                @endif
-
-            </tbody>
-        </table>
 
         <ul class="order__list">
             @foreach ($orders as $order)

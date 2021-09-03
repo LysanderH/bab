@@ -1,8 +1,14 @@
 @extends('layout.app', ['title'=>'Commande'])
 
 @section('content')
-    <h1>Apperçu de commande</h1>
-    <x-admin-menu />
+    <header class="header">
+        <div class="header__wrapper">
+            <h1 class="header__heading"><a href="{{ route('admin.dashboard') }}" class="header__link">Book a Book</a>
+                <span class="sr-only">- Apperçu de commande</span>
+            </h1>
+            <x-admin-menu />
+        </div>
+    </header>
     <nav class="controls" aria-label="Navigation de la ressource">
         <h2 class="controls__heading sr-only" role="heading" aria-level="2">Navigation de la ressource</h2>
         <div class="controls__wrapper">

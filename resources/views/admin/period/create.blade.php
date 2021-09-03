@@ -1,7 +1,14 @@
 @extends('layout.app', ['title'=>'Commancer une nouvelle période'])
 
 @section('content')
-    <h1>Commancer une nouvelle période</h1>
+    <header class="header">
+        <div class="header__wrapper">
+            <h1 class="header__heading"><a href="{{ route('admin.dashboard') }}" class="header__link">Book a Book</a>
+                <span class="sr-only">- Commancer une nouvelle période</span>
+            </h1>
+            <x-admin-menu />
+        </div>
+    </header>
     <form method="POST" action="{{ route('admin.period.store') }}" enctype="multipart/form-data">
         @csrf
 

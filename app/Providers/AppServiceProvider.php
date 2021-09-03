@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
@@ -27,5 +28,7 @@ class AppServiceProvider extends ServiceProvider
         Blade::directive('currency', function ($expression) {
             return "<?php echo number_format($expression, 2) . '€'; ?>";
         });
+
+        Paginator::defaultView('vendor.pagination.default');
     }
 }

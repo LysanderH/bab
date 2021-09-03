@@ -30,6 +30,14 @@ select {
     background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath class='st3' d='M12 18c-.3 0-.5-.1-.7-.3l-8-8c-.4-.4-.4-1 0-1.4s1-.4 1.4 0l7.3 7.3 7.3-7.3c.4-.4 1-.4 1.4 0s.4 1 0 1.4l-8 8c-.2.2-.4.3-.7.3z'%3E%3C/path%3E%3C/svg%3E") no-repeat 95%, $white;
     background-size: 15px 15px;
     @include franklin(16px, $text-color);
+
+    &::after {
+        content: "";
+        width: 0.8em;
+        height: 0.5em;
+        background-color: $text-color;
+        clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+    }
 }
 
 .commande {

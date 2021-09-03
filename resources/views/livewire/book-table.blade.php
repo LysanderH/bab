@@ -88,7 +88,7 @@
                     </td>
                 </tr>
             @endif
-            {{ $books->links() }}
+            {{ $books->links('vendor.pagination.default') }}
 
         </tbody>
     </table>

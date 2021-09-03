@@ -2,8 +2,11 @@
 
 @section('content')
     <header class="header">
-        <h1>Commander</h1>
-        <x-user-menu />
+        <div class="header__wrapper">
+            <h1 class="header__heading">Book a Book <span class="sr-only">- Commander partie 2</span>
+            </h1>
+            <x-user-menu />
+        </div>
     </header>
     <main>
         <form action="{{ route('student.order.store') }}" method="POST">

@@ -2,8 +2,12 @@
 
 @section('content')
     <header class="header">
-        <h1>Commander</h1>
-        <x-user-menu />
+        <div class="header__wrapper">
+            <h1 class="header__heading"><a href="{{ route('student.dashboard') }}" class="header__link">Book a Book</a>
+                <span class="sr-only">- Commander</span>
+            </h1>
+            <x-user-menu />
+        </div>
     </header>
     <main>
         <form action="{{ route('student.order.add') }}" method="POST">

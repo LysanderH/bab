@@ -2,8 +2,12 @@
 
 @section('content')
     <header class="header">
-        <h1>Accueil</h1>
-        <x-user-menu />
+        <div class="header__wrapper">
+            <h1 class="header__heading"><a href="{{ route('student.dashboard') }}" class="header__link">Book a Book</a>
+                <span class="sr-only">- Accueil</span>
+            </h1>
+            <x-user-menu />
+        </div>
     </header>
     <main>
         <div class="message__wrapper">
@@ -53,7 +57,6 @@
                                     {{ $book->author }}
                                 </td>
                                 <td class="talbe__data">
-                                    @dump($book)
                                     @currency($book->pivot->current_price)
                                 </td>
                             </tr>
