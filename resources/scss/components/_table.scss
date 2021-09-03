@@ -1,0 +1,72 @@
+.table {
+    max-width: $max-width-desktop;
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+
+    &__body {}
+
+    &__data {
+        padding: .5rem 1rem;
+        max-width: 350px;
+
+        &__status {}
+
+        &--no-data {}
+    }
+
+    &__form {
+        max-width: 300px;
+        width: 100%;
+    }
+
+    &__head {}
+
+    &__link {}
+
+    &__body &__row:nth-of-type(2n + 1) {
+        background-color: #ddd;
+    }
+
+    &__heading {}
+
+}
+
+table,
+td,
+th {
+    border: 1px solid #ddd;
+    text-align: left;
+    max-width: 350px;
+    @include franklin(16px)
+}
+
+.w-50 {
+    width: 50px;
+}
+
+td:first-child {
+    text-align: center;
+}
+
+td img {
+    width: 100%;
+    height: auto;
+}
+
+th,
+th a {
+    text-transform: uppercase;
+}
+
+table {
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 100%;
+
+}
+
+th,
+td {
+    padding: 15px;
+}

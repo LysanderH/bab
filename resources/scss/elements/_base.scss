@@ -13,11 +13,41 @@ footer {
 }
 
 select {
+    // A reset of styles, including removing the default dropdown arrow
     appearance: none;
-    background: url("../storage/assets/icons/down-arrow.svg") $white no-repeat;
-    background-position: right 8px center;
-    background-size: 14px;
-    padding-right: 14px;
+    // Additional resets for further consistency
+    background-color: transparent;
+    border: none;
+    padding: 0 1em 0 0;
+    margin: 0;
+    width: 100%;
     cursor: pointer;
-    min-width: 276px;
+    border: 1px solid $input-border;
+    border-radius: $border-radius;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    line-height: 1.1;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath class='st3' d='M12 18c-.3 0-.5-.1-.7-.3l-8-8c-.4-.4-.4-1 0-1.4s1-.4 1.4 0l7.3 7.3 7.3-7.3c.4-.4 1-.4 1.4 0s.4 1 0 1.4l-8 8c-.2.2-.4.3-.7.3z'%3E%3C/path%3E%3C/svg%3E") no-repeat 95%, $white;
+    background-size: 15px 15px;
+    @include franklin(16px, $text-color);
+}
+
+.commande {
+    background-color: $status-ordered;
+}
+
+.paye {
+    background-color: $status-payed;
+}
+
+.disponible {
+    background-color: $status-disponible;
+}
+
+.retire {
+    background-color: $status-delivered;
+}
+
+.annule {
+    background-color: $status-stop;
 }

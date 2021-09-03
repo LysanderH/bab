@@ -5,9 +5,17 @@
 
     &__wrapper {
         max-width: $max-width-desktop;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
     }
 
     &__heading {
         @include franklin(32px, $white);
+    }
+
+    &__link {
+        @include franklin(32px, $white);
+        text-decoration: none;
     }
 }

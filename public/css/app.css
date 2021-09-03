@@ -392,12 +392,43 @@ select {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
-  background: url("../storage/assets/icons/down-arrow.svg") #fff no-repeat;
-  background-position: right 8px center;
-  background-size: 14px;
-  padding-right: 14px;
+  background-color: transparent;
+  border: none;
+  padding: 0 1em 0 0;
+  margin: 0;
+  width: 100%;
   cursor: pointer;
-  min-width: 276px;
+  border: 1px solid #707070;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  line-height: 1.1;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath class='st3' d='M12 18c-.3 0-.5-.1-.7-.3l-8-8c-.4-.4-.4-1 0-1.4s1-.4 1.4 0l7.3 7.3 7.3-7.3c.4-.4 1-.4 1.4 0s.4 1 0 1.4l-8 8c-.2.2-.4.3-.7.3z'%3E%3C/path%3E%3C/svg%3E") no-repeat 95%, #fff;
+  background-size: 15px 15px;
+  font-family: "Libre Franklin", sans-serif;
+  font-size: 16px;
+  font-size: 1rem;
+  color: #333;
+}
+
+.commande {
+  background-color: #C44F56;
+}
+
+.paye {
+  background-color: #FDC570;
+}
+
+.disponible {
+  background-color: #FDFD70;
+}
+
+.retire {
+  background-color: #5F8124;
+}
+
+.annule {
+  background-color: #bebebe;
 }
 
 /* libre-franklin-regular - latin */
@@ -477,12 +508,22 @@ select {
 }
 .header__wrapper {
   max-width: 1088px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .header__heading {
   font-family: "Libre Franklin", sans-serif;
   font-size: 32px;
   font-size: 2rem;
   color: #fff;
+}
+.header__link {
+  font-family: "Libre Franklin", sans-serif;
+  font-size: 32px;
+  font-size: 2rem;
+  color: #fff;
+  text-decoration: none;
 }
 
 .btn {
@@ -617,4 +658,85 @@ select {
   width: auto;
   height: 250px;
   border-radius: 5px;
+}
+
+.controls {
+  max-width: 1088px;
+  width: 100%;
+  margin: 2rem auto;
+}
+.controls__link {
+  padding: 0.5em 1em;
+  background-color: #5587FF;
+  transition: background-color 0.2s ease-in-out;
+  border-radius: 5px;
+  text-decoration: none;
+  font-family: "Libre Franklin", sans-serif;
+  font-size: 16px;
+  font-size: 1rem;
+  color: #fff;
+}
+.controls__link:hover {
+  background-color: #1e4dbb;
+}
+.controls__wrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.table {
+  max-width: 1088px;
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem auto;
+}
+.table__data {
+  padding: 0.5rem 1rem;
+  max-width: 350px;
+}
+.table__form {
+  max-width: 300px;
+  width: 100%;
+}
+.table__body .table__row:nth-of-type(2n + 1) {
+  background-color: #ddd;
+}
+table,
+td,
+th {
+  border: 1px solid #ddd;
+  text-align: left;
+  max-width: 350px;
+  font-family: "Libre Franklin", sans-serif;
+  font-size: 16px;
+  font-size: 1rem;
+}
+
+.w-50 {
+  width: 50px;
+}
+
+td:first-child {
+  text-align: center;
+}
+
+td img {
+  width: 100%;
+  height: auto;
+}
+
+th,
+th a {
+  text-transform: uppercase;
+}
+
+table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+}
+
+th,
+td {
+  padding: 15px;
 }

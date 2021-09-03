@@ -1,0 +1,25 @@
+.controls {
+    max-width: $max-width-desktop;
+    width: 100%;
+    margin: 2rem auto;
+
+
+    &__link {
+        padding: .5em 1em;
+        background-color: $button;
+        transition: background-color .2s ease-in-out;
+        border-radius: 5px;
+        text-decoration: none;
+        @include franklin(16px, $white);
+
+
+        &:hover {
+            background-color: $button-hover;
+        }
+    }
+
+    &__wrapper {
+        display: flex;
+        justify-content: flex-end;
+    }
+}

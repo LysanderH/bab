@@ -14,7 +14,7 @@ class Table extends Component
 {
     public function changeStatus($orderId, $statusId)
     {
-        $order = Order::with('books', 'user')->where('id', (int)$orderId)->first();
+        $order = Order::with('books', 'user')->where('id', (int)$orderId)->orderByDesc('created_at')->first();
         $status = Status::where('id', (int)$statusId)->first();
 
         $order->update([
