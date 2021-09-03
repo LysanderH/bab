@@ -23,80 +23,85 @@
         </select>
         <button role="button" type="submit">Rechercher</button>
     </form>
-    <table class="table">
-        <thead class="table__head">
-            <tr class="table__row">
-                <th class="talbe__heading" scope="col">
-                    &nbsp;
-                </th>
-                <th class="talbe__heading" scope="col">
-                    Nom
-                </th>
-                <th class="talbe__heading" scope="col">
-                    <a href="?sortBy=total"
-                       class="table__link"
-                       wire:click.prevent="sortBy('total')">Total</a>
-                </th>
-                <th class="talbe__heading" scope="col">
-                    <a href="?sortBy=status"
-                       class="table__link"
-                       wire:click.prevent="sortBy('status')">Status</a>
-                </th>
-                <th class="talbe__heading" scope="col">
-                    Actions
-                </th>
-            </tr>
-        </thead>
-        <tbody class="table__body" wire:loading.class.delay="loading">
-            @if (count($orders))
-                @foreach ($orders as $order)
+    <div class="table__wrapper">
+        <table class="table">
+            <thead class="table__head">
+                <tr class="table__row">
+                    <th class="talbe__heading w-50">
+                        &nbsp;
+                    </th>
+                    <th class="talbe__heading" scope="col">
+                        Nom
+                    </th>
+                    <th class="talbe__heading" scope="col">
+                        <a href="?sortBy=total"
+                           class="table__link"
+                           wire:click.prevent="sortBy('total')">Total</a>
+                    </th>
+                    <th class="talbe__heading" scope="col">
+                        <a href="?sortBy=status"
+                           class="table__link"
+                           wire:click.prevent="sortBy('status')">Status</a>
+                    </th>
+                    <th class="talbe__heading" scope="col">
+                        Actions
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="table__body" wire:loading.class.delay="loading">
+                @if (count($orders))
+                    @foreach ($orders as $order)
+                        <tr class="table__row">
+                            <td class="talbe__data">{{ $loop->iteration }}</td>
+                            <td class="talbe__data">{{ $order->user->name }}</td>
+                            <td class="talbe__data">
+                                @currency($order->total)
+                            </td>
+                            <td
+                                class="talbe__data {{ transliterator_transliterate('Any-Latin; Latin-ASCII; Lower()', $order->status->name) }}">
+                                <form action=" update/order" class="table__form form">
+                                    @csrf
+                                    @method('PUT')
+                                    <input type="hidden" value="{{ $order->id }}">
+                                    <select name="status"
+                                            wire:change="changeStatus({{ $order->id }}, $event.target.value)">
+                                        @foreach ($statuses as $status)
+                                            <option value="{{ $status->id }}"
+                                                    @if ($status->id === $order->status_id) selected @endif>{{ $status->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <noscript>
+                                        <button type="submit">Modifier</button>
+                                    </noscript>
+                                </form>
+                            </td>
+                            <td class="talbe__data talbe__data--action">
+                                <a href="{{ route('admin.order.show', ['order' => $order->id]) }}"
+                                   class="table__link table__link--show"><span
+                                          class="sr-only">Voir
+                                        la commande</span></a>
+                                <form action="{{ route('admin.order.destroy', ['order' => $order->id]) }}"
+                                      method="POST">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" class="table__link table__link--delete">
+                                        @include('icons.delete')<span
+                                              class="sr-only">Supprimer
+                                            la commande</span></button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                @else
                     <tr class="table__row">
-                        <td class="talbe__data">{{ $loop->iteration }}</td>
-                        <td class="talbe__data">{{ $order->name }}</td>
-                        <td class="talbe__data">
-                            {{ $order->total }}
-                        </td>
-                        <td class="talbe__data">
-                            <form action="update/order" class="table__form form">
-                                @csrf
-                                @method('PUT')
-                                <input type="hidden" value="{{ $order->id }}">
-                                <select name="status"
-                                        wire:change="changeStatus({{ $order->id }}, $event.target.value)">
-                                    @foreach ($statuses as $status)
-                                        <option value="{{ $status->id }}"
-                                                @if ($status->id === $order->status_id) selected @endif>{{ $status->name }}</option>
-                                    @endforeach
-                                </select>
-                                <noscript>
-                                    <button type="submit">Modifier</button>
-                                </noscript>
-                            </form>
-                        </td>
-                        <td class="talbe__data talbe__data--action">
-                            <a href="{{ route('admin.order.show', ['order' => $order->id]) }}"
-                               class="table__link table__link--show"><span
-                                      class="sr-only">Voir
-                                    la commande</span></a>
-                            <form action="{{ route('admin.order.destroy', ['order' => $order->id]) }}" method="POST">
-                                @csrf
-                                @method('delete')
-                                <button type="submit" class="table__link table__link--delete"><span
-                                          class="sr-only">Supprimer
-                                        la commande</span></button>
-                            </form>
+                        <td class="talbe__data table__data--no-data" colspan="5">
+                            Aucun livre existe
                         </td>
                     </tr>
-                @endforeach
-            @else
-                <tr class="table__row">
-                    <td class="talbe__data table__data--no-data" colspan="5">
-                        Aucun livre existe
-                    </td>
-                </tr>
-            @endif
-            {{ $orders->links() }}
+                @endif
 
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
+    {{ $orders->links() }}
 </div>

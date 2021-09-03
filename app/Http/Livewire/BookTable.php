@@ -44,7 +44,7 @@ class BookTable extends Component
                 return $query->where('title', 'LIKE', "%$term%")->orWhere('author', 'LIKE', "%$term%");
             })->when($this->sortBy, function ($query, $sortBy) {
                 return $query->orderBy($sortBy, $this->sortDirection);
-            })->paginate(1),
+            })->paginate($this->perPage),
         ]);
     }
 }

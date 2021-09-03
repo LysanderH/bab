@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Mail\OrderReadyEmail;
 use App\Models\Book;
 use App\Models\Order;
+use App\Models\Period;
 use App\Models\Status;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -38,8 +39,16 @@ class Table extends Component
 
     public function render()
     {
+        $period = Period::with('orders.user', 'orders.status')->where('active', true)->first();
+
+        if ($period) {
+            $orders = $period->orders()->paginate(25);
+        } else {
+            $orders = Order::with('user', 'status')->get();
+        }
+
         return view('livewire.table', [
-            'orders' => Order::with('user', 'status')->paginate(10),
+            'orders' => $orders,
             'statuses' => Status::all(),
         ]);
     }

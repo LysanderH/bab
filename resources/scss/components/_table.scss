@@ -1,8 +1,14 @@
 .table {
     max-width: $max-width-desktop;
-    width: 100%;
+    min-width: 100%;
     border-collapse: collapse;
-    margin: 2rem auto;
+    // margin: 2rem auto;
+
+    &__wrapper {
+        width: 90%;
+        margin: 0 auto;
+        overflow-x: auto;
+    }
 
     &__body {}
 
@@ -13,6 +19,12 @@
         &__status {}
 
         &--no-data {}
+
+        &--action {
+            form {
+                text-align: center;
+            }
+        }
     }
 
     &__form {
@@ -22,7 +34,26 @@
 
     &__head {}
 
-    &__link {}
+    &__link {
+        border: none;
+        border-radius: $border-radius;
+
+        &--delete {
+            background-color: $del-button;
+            transition: background-color .2s ease-in-out;
+            padding: 5px;
+
+            svg {
+                fill: $white;
+                width: 25px;
+            }
+
+            &:hover {
+                background: $del-button-hover;
+
+            }
+        }
+    }
 
     &__body &__row:nth-of-type(2n + 1) {
         background-color: #ddd;
@@ -37,7 +68,7 @@ td,
 th {
     border: 1px solid #ddd;
     text-align: left;
-    max-width: 350px;
+    // max-width: 350px;
     @include franklin(16px)
 }
 
@@ -62,7 +93,7 @@ th a {
 table {
     border-collapse: collapse;
     table-layout: fixed;
-    width: 100%;
+    // width: 100%;
 
 }
 

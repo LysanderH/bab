@@ -21,6 +21,7 @@ select {
     padding: 0 1em 0 0;
     margin: 0;
     width: 100%;
+    min-width: 250px;
     cursor: pointer;
     border: 1px solid $input-border;
     border-radius: $border-radius;
@@ -31,13 +32,13 @@ select {
     background-size: 15px 15px;
     @include franklin(16px, $text-color);
 
-    &::after {
-        content: "";
-        width: 0.8em;
-        height: 0.5em;
-        background-color: $text-color;
-        clip-path: polygon(100% 0%, 0 0%, 50% 100%);
-    }
+    // &::after {
+    //     content: "";
+    //     width: 0.8em;
+    //     height: 0.5em;
+    //     background-color: $text-color;
+    //     clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+    // }
 }
 
 .commande {

@@ -397,6 +397,7 @@ select {
   padding: 0 1em 0 0;
   margin: 0;
   width: 100%;
+  min-width: 250px;
   cursor: pointer;
   border: 1px solid #707070;
   border-radius: 5px;
@@ -409,14 +410,6 @@ select {
   font-size: 16px;
   font-size: 1rem;
   color: #333;
-}
-select::after {
-  content: "";
-  width: 0.8em;
-  height: 0.5em;
-  background-color: #333;
-  -webkit-clip-path: polygon(100% 0%, 0 0%, 50% 100%);
-          clip-path: polygon(100% 0%, 0 0%, 50% 100%);
 }
 
 .commande {
@@ -698,17 +691,40 @@ select::after {
 
 .table {
   max-width: 1088px;
-  width: 100%;
+  min-width: 100%;
   border-collapse: collapse;
-  margin: 2rem auto;
+}
+.table__wrapper {
+  width: 90%;
+  margin: 0 auto;
+  overflow-x: auto;
 }
 .table__data {
   padding: 0.5rem 1rem;
   max-width: 350px;
 }
+.table__data--action form {
+  text-align: center;
+}
 .table__form {
   max-width: 300px;
   width: 100%;
+}
+.table__link {
+  border: none;
+  border-radius: 5px;
+}
+.table__link--delete {
+  background-color: #C44F56;
+  transition: background-color 0.2s ease-in-out;
+  padding: 5px;
+}
+.table__link--delete svg {
+  fill: #fff;
+  width: 25px;
+}
+.table__link--delete:hover {
+  background: #3b1215;
 }
 .table__body .table__row:nth-of-type(2n + 1) {
   background-color: #ddd;
@@ -718,7 +734,6 @@ td,
 th {
   border: 1px solid #ddd;
   text-align: left;
-  max-width: 350px;
   font-family: "Libre Franklin", sans-serif;
   font-size: 16px;
   font-size: 1rem;
@@ -745,10 +760,80 @@ th a {
 table {
   border-collapse: collapse;
   table-layout: fixed;
-  width: 100%;
 }
 
 th,
 td {
   padding: 15px;
+}
+
+.nav {
+  display: flex;
+}
+.nav__checkbox {
+  opacity: 0;
+  position: absolute;
+  left: -9999px;
+}
+.nav__checkbox:checked ~ .nav__wrapper {
+  transform: translateX(0);
+}
+.nav__label {
+  cursor: pointer;
+  display: none;
+}
+@media screen and (min-width: 0) and (max-width: 925px) {
+  .nav__label {
+    display: block;
+    margin-left: auto;
+  }
+}
+.nav__label--open svg {
+  fill: #fff;
+  width: 25px;
+  height: 25px;
+}
+.nav__label--close svg {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  fill: #fff;
+  width: 25px;
+  height: 25px;
+}
+.nav__link {
+  font-family: "Libre Franklin", sans-serif;
+  font-size: 16px;
+  font-size: 1rem;
+  color: #fff;
+  text-decoration: none;
+  padding: 0.5rem 0.51rem;
+  border-bottom: 1px solid #000;
+  transition: border-color 0.3s ease-in-out;
+}
+.nav__link:hover, .nav__link:active {
+  border-bottom: 1px solid #fff;
+}
+@media screen and (min-width: 0) and (max-width: 925px) {
+  .nav__link {
+    padding: 0.75rem 0.5rem 0.5rem 0.5rem;
+  }
+}
+.nav__wrapper {
+  display: flex;
+}
+@media screen and (min-width: 0) and (max-width: 925px) {
+  .nav__wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 80vw;
+    height: 100vh;
+    flex-direction: column;
+    background-color: #000;
+    justify-content: center;
+    padding: 1rem;
+    transform: translateX(-100%);
+    transition: transform 0.2s ease-in-out;
+  }
 }
