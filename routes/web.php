@@ -1,16 +1,19 @@
 <?php
 
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\ExportToCSVController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PeriodController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\StudentOrderController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\IsAdmin;
+use App\Models\Book;
 use App\Models\Order;
 use App\Models\Period;
 use App\Models\Status;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,6 +31,7 @@ Route::get('/', function () {
     return redirect('/login');
 });
 
+
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('dashboard', function () {
         return view('admin.dashboard', [
@@ -36,6 +40,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'isAdmin'])->group(f
         ]);
     })->name('dashboard');
 
+    Route::get('export-csv', [ExportToCSVController::class, 'export']);
     Route::resource('book', BookController::class);
     Route::resource('order', OrderController::class);
     Route::resource('user', UserController::class);
