@@ -39,11 +39,6 @@ class BookTable extends Component
 
     public function render()
     {
-        // foreach ($books as $book) {
-        //     dd($book->orders->whereHas('period', function (Builder $query) {
-        //         $query->where('active' == true);
-        //     }))->sum('amount');
-        // }
         return view('livewire.book-table', [
             'books' => Book::with('orders.period')->when($this->term, function ($query, $term) {
                 return $query->where('title', 'LIKE', "%$term%")->orWhere('author', 'LIKE', "%$term%");
