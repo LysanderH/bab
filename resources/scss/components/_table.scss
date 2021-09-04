@@ -5,12 +5,20 @@
     // margin: 2rem auto;
 
     &__wrapper {
-        width: 90%;
+        width: 100%;
         margin: 0 auto;
         overflow-x: auto;
+        max-width: $max-width-desktop;
+
     }
 
-    &__body {}
+    &__sort {
+        display: flex;
+        justify-content: space-between;
+        margin: 1rem auto;
+        max-width: $max-width-desktop;
+        flex-wrap: wrap;
+    }
 
     &__data {
         padding: .5rem 1rem;
@@ -21,8 +29,15 @@
         &--no-data {}
 
         &--action {
-            form {
-                text-align: center;
+            max-width: 400px;
+
+            div {
+                display: flex;
+                justify-content: center;
+
+                form {
+                    text-align: center;
+                }
             }
         }
     }
@@ -49,7 +64,24 @@
             }
 
             &:hover {
-                background: $del-button-hover;
+                background-color: $del-button-hover;
+
+            }
+        }
+
+        &--show {
+            background-color: $button;
+            transition: background-color .2s ease-in-out;
+            padding: 5px;
+            margin-right: .5rem;
+
+            svg {
+                fill: $white;
+                width: 25px;
+            }
+
+            &:hover {
+                background-color: $button-hover;
 
             }
         }
@@ -81,7 +113,14 @@ td:first-child {
 }
 
 td img {
+    min-width: 50px;
     width: 100%;
+    height: auto;
+}
+
+td .profile {
+    width: 100%;
+    max-width: 50px;
     height: auto;
 }
 
@@ -90,11 +129,15 @@ th a {
     text-transform: uppercase;
 }
 
+th,
+td {
+    max-width: 350px;
+}
+
 table {
     border-collapse: collapse;
     table-layout: fixed;
-    // width: 100%;
-
+    margin-bottom: 1rem;
 }
 
 th,

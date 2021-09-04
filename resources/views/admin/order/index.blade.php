@@ -9,14 +9,19 @@
             <x-admin-menu />
         </div>
     </header>
-    <section class="controls" aria-label="Navigation de la ressource">
-        <h2 class="controls__heading sr-only" role="heading" aria-level="2">Navigation de la ressource</h2>
-        <div class="controls__wrapper">
-            <a href="{{ route('admin.order.create') }}" class="controls__link">Ajouter une commande</a>
-        </div>
-    </section>
+    <main>
+        @include('layout.success')
+        @include('layout.error')
+        <section class="controls" aria-label="Navigation de la ressource">
+            <h2 class="sr-only controls__heading" role="heading" aria-level="2">Navigation de la ressource</h2>
+            <div class="controls__wrapper">
+                <a href="{{ route('admin.order.create') }}" class="controls__link">@include('icons.add') Ajouter une
+                    commande</a>
+            </div>
+        </section>
 
-    <livewire:order-table />
+        <livewire:order-table />
+    </main>
 @endsection
 @section('styles')
     @livewireStyles

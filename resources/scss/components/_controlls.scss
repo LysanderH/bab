@@ -1,0 +1,20 @@
+.controls {
+    display: flex;
+    justify-content: flex-end;
+    max-width: $max-width-desktop;
+    margin: 1rem auto;
+    flex-wrap: wrap;
+
+    &__link {
+        margin-right: .5rem;
+        display: flex;
+        align-items: center;
+
+        svg {
+            fill: $white;
+            width: 20px;
+            height: 20px;
+            margin-right: .3rem;
+        }
+    }
+}

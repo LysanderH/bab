@@ -1,8 +1,9 @@
 <div>
-    <div class="helper">
+    <div class="table__sort">
         <form class="search" method="GET">
-            <input type="search" name="term" class="search__control" wire:model="term" placeholder="Rechercher">
-            <button role="button" type="submit">Rechercher</button>
+            <input type="search" name="term" class="search__control form-control" wire:model="term"
+                   placeholder="Rechercher">
+            <noscript><button role="button" type="submit">Rechercher</button></noscript>
         </form>
         <form class="per-page" method="GET">
             <select name="perPage" class="per-page__control" wire:model="perPage">
@@ -11,7 +12,7 @@
                 <option value="75">75</option>
                 <option value="100">100</option>
             </select>
-            <button role="button" type="submit">Rechercher</button>
+            <noscript><button role="button" type="submit">Changer</button></noscript>
         </form>
     </div>
     <div class="table__wrapper">
@@ -69,26 +70,29 @@
                             <td class="talbe__data">
                                 {{ $book->ISBN }}
                             </td>
-                            <td class="talbe__data talbe__data--action">
-                                <a href="{{ route('admin.book.show', ['book' => $book->id]) }}"
-                                   class="table__link table__link--show"><span
-                                          class="sr-only">Voir
-                                        le livre</span></a>
-                                <form action="{{ route('admin.book.destroy', ['book' => $book->id]) }}" method="POST">
-                                    @csrf
-                                    @method('delete')
-                                    <button type="submit" class="table__link table__link--delete">
-                                        @include('icons.delete')
-                                        <span class="sr-only">Supprimer
-                                            le livre</span>
-                                    </button>
-                                </form>
+                            <td class="table__data table__data--action">
+                                <div>
+                                    <a href="{{ route('admin.book.show', ['book' => $book->id]) }}"
+                                       class="table__link table__link--show">@include('icons.eye')<span
+                                              class="sr-only">Voir
+                                            le livre</span></a>
+                                    <form action="{{ route('admin.book.destroy', ['book' => $book->id]) }}"
+                                          method="POST">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="table__link table__link--delete">
+                                            @include('icons.delete')
+                                            <span class="sr-only">Supprimer
+                                                le livre</span>
+                                        </button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                     @endforeach
                 @else
                     <tr class="table__row">
-                        <td class="talbe__data table__data--no-data" colspan="3">
+                        <td class="talbe__data table__data--no-data" colspan="8">
                             Aucun livre existe
                         </td>
                     </tr>

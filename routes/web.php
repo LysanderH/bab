@@ -40,7 +40,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'isAdmin'])->group(f
         ]);
     })->name('dashboard');
 
-    Route::get('export-csv', [ExportToCSVController::class, 'export']);
+    Route::get('export-csv', [ExportToCSVController::class, 'export'])->name('export');
     Route::resource('book', BookController::class);
     Route::resource('order', OrderController::class);
     Route::resource('user', UserController::class);

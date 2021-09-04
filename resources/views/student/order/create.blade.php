@@ -10,6 +10,8 @@
         </div>
     </header>
     <main>
+        @include('layout.success')
+        @include('layout.error')
         <form action="{{ route('student.order.add') }}" method="POST">
             @csrf
             @foreach ($bacs as $bac)

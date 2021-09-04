@@ -1,0 +1,16 @@
+.alert {
+    width: 100%;
+    @include franklin(16px, $white, $lh: 1.5);
+    padding: 1rem;
+    border-radius: $border-radius;
+    margin: 0 auto 1rem auto;
+    max-width: $max-width-desktop;
+
+    &-success {
+        background-color: $success;
+    }
+
+    &-error {
+        background-color: $error;
+    }
+}

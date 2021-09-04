@@ -9,6 +9,8 @@
         </div>
     </header>
     <main>
+        @include('layout.success')
+        @include('layout.error')
         <form action="{{ route('student.order.store') }}" method="POST">
             @csrf
 

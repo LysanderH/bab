@@ -8,21 +8,26 @@
         </div>
 
     @endif
-    <form class="search" method="GET">
-        <input type="search" name="term" class="search__control" wire:model="term" placeholder="Rechercher">
-        <noscript>
-            <button role="button" type="submit">Rechercher</button>
-        </noscript>
-    </form>
-    <form class="per-page" method="GET">
-        <select name="perPage" class="per-page__control" wire:model="perPage">
-            <option value="25">25</option>
-            <option value="50">50</option>
-            <option value="75">75</option>
-            <option value="100">100</option>
-        </select>
-        <button role="button" type="submit">Rechercher</button>
-    </form>
+    <div class="table__sort">
+        <form class="search" method="GET">
+            <input type="search" name="term" class="search__control form-control" wire:model="term"
+                   placeholder="Rechercher">
+            <noscript>
+                <button role="button" type="submit">Rechercher</button>
+            </noscript>
+        </form>
+        <form class="per-page" method="GET">
+            <select name="perPage" class="per-page__control" wire:model="perPage">
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="75">75</option>
+                <option value="100">100</option>
+            </select>
+            <noscript>
+                <button role="button" type="submit">Afficher</button>
+            </noscript>
+        </form>
+    </div>
     <div class="table__wrapper">
         <table class="table">
             <thead class="table__head">
@@ -75,20 +80,22 @@
                                     </noscript>
                                 </form>
                             </td>
-                            <td class="talbe__data talbe__data--action">
-                                <a href="{{ route('admin.order.show', ['order' => $order->id]) }}"
-                                   class="table__link table__link--show"><span
-                                          class="sr-only">Voir
-                                        la commande</span></a>
-                                <form action="{{ route('admin.order.destroy', ['order' => $order->id]) }}"
-                                      method="POST">
-                                    @csrf
-                                    @method('delete')
-                                    <button type="submit" class="table__link table__link--delete">
-                                        @include('icons.delete')<span
-                                              class="sr-only">Supprimer
-                                            la commande</span></button>
-                                </form>
+                            <td class="table__data table__data--action">
+                                <div>
+                                    <a href="{{ route('admin.order.show', ['order' => $order->id]) }}"
+                                       class="table__link table__link--show">@include('icons.eye')<span
+                                              class="sr-only">Voir
+                                            la commande</span></a>
+                                    <form action="{{ route('admin.order.destroy', ['order' => $order->id]) }}"
+                                          method="POST">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="table__link table__link--delete">
+                                            @include('icons.delete')<span
+                                                  class="sr-only">Supprimer
+                                                la commande</span></button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                     @endforeach
@@ -103,5 +110,5 @@
             </tbody>
         </table>
     </div>
-    {{ $orders->links() }}
+    {{ $orders->links('vendor.pagination.default') }}
 </div>

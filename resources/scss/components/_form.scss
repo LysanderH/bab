@@ -95,6 +95,11 @@
     width: 100%;
     max-width: 400px;
     margin: 2rem auto;
+
+    &--order {
+        max-width: $max-width-desktop;
+        margin: 0 auto;
+    }
 }
 
 .is-invalid {

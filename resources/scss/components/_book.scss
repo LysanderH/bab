@@ -1,0 +1,46 @@
+.book {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+    max-width: $max-width-desktop;
+    margin: 0 auto;
+
+    &__category {
+        @include franklin(16px);
+        margin-bottom: .5rem;
+    }
+
+    &__description {
+        @include franklin(16px);
+        margin-bottom: .5rem;
+    }
+
+    &__heading {
+        @include franklin(20px);
+        margin-bottom: 1rem;
+        text-align: center;
+        font-weight: 600;
+    }
+
+    &__img {
+        width: 100%;
+        height: auto;
+        max-width: 250px;
+        margin: 0 auto 1rem auto;
+    }
+
+    &__isbn {
+        @include franklin(20px);
+        margin-bottom: .5rem;
+    }
+
+    &__price {
+        @include franklin(16px);
+        margin-bottom: .5rem;
+    }
+
+    &__stock {
+        @include franklin(16px);
+        margin-bottom: .5rem;
+    }
+}

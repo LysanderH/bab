@@ -1,0 +1,14 @@
+.message {
+    @include franklin(16px, $white, 1.5);
+
+    &__wrapper {
+        max-width: $max-width-desktop;
+        margin: 1rem auto;
+        padding: 1rem;
+        background-color: $error;
+    }
+
+    b {
+        font-weight: 800;
+    }
+}

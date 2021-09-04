@@ -7,7 +7,7 @@
         </div>
     </header>
     <div class="card">
-        <div class="card-header">{{ __('Verify Your Email Address') }}</div>
+        <div class="card-header">{{ __('Vérifier votre adresse mail') }}</div>
 
         <div class="card-body">
             @if (session('resent'))
@@ -21,7 +21,7 @@
             <form class="___class_+?8___" method="POST" action="{{ route('verification.send') }}" class="form">
                 @csrf
                 <button type="submit"
-                        class="btn btn-link p-0 m-0 align-baseline">{{ __('cliquer ici pour recevoir un nouveau.') }}</button>
+                        class="p-0 m-0 align-baseline btn btn-link">{{ __('cliquer ici pour recevoir un nouveau.') }}</button>
             </form>
         </div>
     </div>

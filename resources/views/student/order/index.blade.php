@@ -10,6 +10,8 @@
         </div>
     </header>
     <main>
+        @include('layout.success')
+        @include('layout.error')
         <section class="controls" aria-label="Navigation de la ressource">
             <h2 class="controls__heading sr-only" role="heading" aria-level="2">Navigation de la ressource</h2>
             <div class="controls__wrapper">

@@ -1,0 +1,40 @@
+.user {
+    display: flex;
+    flex-direction: column;
+    max-width: $max-width-desktop;
+    margin: 0 auto;
+}
+
+.email {
+    margin-bottom: 1rem;
+}
+
+.group {
+    margin-bottom: 1rem;
+
+}
+
+.mailto {
+    @include franklin(16px, $text-color);
+    display: inline-block
+}
+
+.user {
+    &__heading {
+        @include franklin(20px);
+        margin-bottom: 1rem;
+        text-align: center;
+        font-weight: 600;
+    }
+
+    &__img {
+        max-width: 250px;
+        margin: 0 auto 1rem auto;
+    }
+}
+
+.user-orders__heading {
+    @include franklin(18px);
+    margin-bottom: .3rem;
+    font-weight: 600;
+}

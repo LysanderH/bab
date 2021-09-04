@@ -1,0 +1,25 @@
+.active {
+    padding: 0 .5rem;
+    @include franklin(20px, $text-color);
+}
+
+.disabled {
+    color: #555;
+    padding: 0 .5rem;
+    @include franklin(20px, $link);
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    a {
+        padding: .5rem;
+        @include franklin(20px, $link);
+
+        &:hover {
+            color: $link-hover;
+        }
+    }
+}
