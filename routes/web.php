@@ -7,6 +7,7 @@ use App\Http\Controllers\PeriodController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\StudentOrderController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserUserController;
 use App\Http\Middleware\IsAdmin;
 use App\Models\Book;
 use App\Models\Order;
@@ -59,4 +60,7 @@ Route::prefix('student')->name('student.')->middleware(['auth', 'isStudent'])->g
     })->name('dashboard');
     Route::resource('order', StudentOrderController::class);
     Route::post('order/add', [StudentOrderController::class, 'add'])->name('order.add');
+    Route::get('profile', [UserUserController::class, 'edit'])->name('profile');
+    Route::put('profile/edit/{user}', [UserUserController::class, 'update'])->name('user.edit');
+    Route::put('profile/destroy', [UserUserController::class, 'destroy'])->name('user.destroy');
 });

@@ -20,7 +20,7 @@
                         <p class="bac__name">{{ $bac->name }}</p>
                         @if (count($bac->books))
                             <ul class="book-list">
-                                @foreach ($bac->books as $book)
+                                @foreach ($bac->books->sortBy('title') as $book)
                                     <li class="book-list__item">
                                         <input type="checkbox" name="book[]" value="{{ $book->id }}"
                                                id="book-{{ $book->id }}" class="book-card__checkbox"

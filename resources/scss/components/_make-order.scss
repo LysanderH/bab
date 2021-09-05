@@ -19,7 +19,7 @@
         text-align: -999999em;
 
         &:checked~.book-card__label {
-            border: 3px solid $success;
+            border: 5px solid $success;
         }
     }
 

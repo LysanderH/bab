@@ -33,7 +33,7 @@ class BookController extends Controller
     {
 
         return view('admin.book.create', [
-            'categories' => Category::all(),
+            'categories' => Category::orderBy('name')->get(),
             'bacs' => Bac::all(),
         ]);
     }

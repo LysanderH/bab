@@ -39,14 +39,10 @@
                         Nom
                     </th>
                     <th class="talbe__heading" scope="col">
-                        <a href="?sortBy=total"
-                           class="table__link"
-                           wire:click.prevent="sortBy('total')">Total</a>
+                        Total
                     </th>
                     <th class="talbe__heading" scope="col">
-                        <a href="?sortBy=status"
-                           class="table__link"
-                           wire:click.prevent="sortBy('status')">Status</a>
+                        Status
                     </th>
                     <th class="talbe__heading" scope="col">
                         Actions

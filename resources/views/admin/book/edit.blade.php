@@ -132,7 +132,8 @@
             <div class="form-group">
                 <label for="price" class="form-label">{{ __('Prix') }}</label>
 
-                <input id="price" type="number" min="0" max="1000" class="form-control @error('price') is-invalid @enderror"
+                <input id="price" type="number" min="0" max="10000" step="0.01"
+                       class="form-control @error('price') is-invalid @enderror"
                        name="price"
                        value="{{ old('price') ?? $book->price }}" required placeholder="0">
 

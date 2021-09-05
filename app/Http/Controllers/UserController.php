@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\Status;
 use App\Models\User;
 use Illuminate\Validation\Rule;
@@ -182,9 +183,19 @@ class UserController extends Controller
      */
     public function destroy(Request $request, User $user)
     {
-        User::destroy($user->id);
+        $user = User::with('orders')->where('id', $user->id)->first();
 
-        $request->session()->flash('success', 'L’utilisateur à bien été supprimé.');
+        if (!$user) {
+            return redirect()->back();
+        }
+
+        foreach ($user->orders as $order) {
+            Order::where('id', $order->id)->delete();
+        }
+
+        $user->delete();
+
+        $request->session()->flash('success', 'L’utilisateur a bien été supprimé.');
 
         return redirect()->back();
     }

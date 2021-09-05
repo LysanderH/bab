@@ -793,6 +793,7 @@ td:first-child {
 td img {
   min-width: 50px;
   width: 100%;
+  max-width: 150px;
   height: auto;
 }
 
@@ -1093,10 +1094,18 @@ td {
   font-weight: 1.5;
 }
 .message__wrapper {
+  position: relative;
   max-width: 1088px;
   margin: 1rem auto;
-  padding: 1rem;
+  padding: 1rem 1rem 1rem calc(1rem + 35px);
   background-color: #C44F56;
+}
+.message__wrapper svg {
+  fill: #fff;
+  position: absolute;
+  top: 1.4px;
+  left: -15px;
+  height: 50px;
 }
 .message b {
   font-weight: 800;
@@ -1116,7 +1125,7 @@ td {
   text-align: -999999em;
 }
 .book-card__checkbox:checked ~ .book-card__label {
-  border: 3px solid #5F8124;
+  border: 5px solid #5F8124;
 }
 .book-card__heading {
   font-family: "Libre Franklin", sans-serif;

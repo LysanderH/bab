@@ -18,7 +18,7 @@ class OrderTable extends Component
 
     public $term = '';
     public $perPage = 25;
-    public $sortBy = 'title';
+    public $sortBy = 'name';
     public $sortDirection = 'asc';
 
     protected $queryString = [
@@ -69,7 +69,7 @@ class OrderTable extends Component
             return $query->whereHas('user', function (Builder $query) use ($term) {
                 $query->where('name', 'LIKE', "%$term%");
             });
-        })->paginate($this->perPage);
+        })->orderByDesc('created_at')->paginate($this->perPage);
 
         $statuses = Status::all();
 

@@ -13,6 +13,7 @@
         @include('layout.success')
         @include('layout.error')
         <div class="message__wrapper">
+            @include('icons.info')
             <p class="message">
                 La date limite pour commander des livres est le <b>{{ $period->deadline->format('d/m/Y') }}</b>.
             </p>
