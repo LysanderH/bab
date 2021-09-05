@@ -11,91 +11,93 @@
     <main>
         @include('layout.success')
         @include('layout.error')
-        <form action="{{ route('student.order.store') }}" method="POST">
+        <form action="{{ route('student.order.store') }}" method="POST" class="book-form">
             @csrf
-
-            <table class="table">
-                <thead class="table__head">
-                    <tr class="table__row">
-                        <th class="talbe__heading" scope="col">
-                            &nbsp;
-                        </th>
-                        <th class="talbe__heading" scope="col">
-                            &nbsp;
-                        </th>
-                        <th class="talbe__heading" scope="col">
-                            Titre
-                        </th>
-                        <th class="talbe__heading" scope="col">
-                            Prix unitaire
-                        </th>
-                        <th class="talbe__heading" scope="col">
-                            Exemplaires
-                        </th>
-                        <th class="talbe__heading" scope="col">
-                            Prix
-                        </th>
-                    </tr>
-                </thead>
-                <tbody class="table__body">
-                    @if (count($books))
-                        @foreach ($books as $book)
-                            <tr class="table__row">
-                                <td class="talbe__data">{{ $loop->iteration }}</td>
-                                <td class="talbe__data">
-                                    <img src="{{ asset('storage/covers/small_' . $book->cover) }}" alt="Foto de profil"
-                                         width="250"
-                                         height="250">
-                                </td>
-                                <td class="talbe__data">{{ $book->title }}</td>
-                                <td class="talbe__data">
-                                    @currency($book->price)
-                                </td>
-                                <td class="talbe__data talbe__data--action">
-                                    <div class="form-group">
-                                        <label for="amount{{ $book->id }}"
-                                               class="form-label">{{ __('Examplaires') }}</label>
-
-                                        <input id="amount{{ $book->id }}" type="number"
-                                               class="form-control amount-input @error('amount') is-invalid @enderror"
-                                               name="amount[{{ $book->id }}]"
-                                               value="{{ $amount ?? (old('amount') ?? 1) }}" required
-                                               placeholder="0" min="0" data-price="{{ $book->price }}"
-                                               data-id="{{ $book->id }}">
-
-                                        @error('title')
-                                            <p class="invalid-feedback" role="alert">
-                                                {{ $message }}
-                                            </p>
-                                        @enderror
-                                    </div>
-                                </td>
-                                <td class="talbe__data" id="price-{{ $book->id }}">
-                                    @currency($book->price)
-                                </td>
-
-                            </tr>
-                        @endforeach
-                    @else
+            <div class="table__wrapper">
+                <table class="table">
+                    <thead class="table__head">
                         <tr class="table__row">
-                            <td class="talbe__data table__data--no-data" colspan="7">
-                                Aucun livre ajouté
+                            <th class="talbe__heading" scope="col">
+                                &nbsp;
+                            </th>
+                            <th class="talbe__heading" scope="col">
+                                &nbsp;
+                            </th>
+                            <th class="talbe__heading" scope="col">
+                                Titre
+                            </th>
+                            <th class="talbe__heading" scope="col">
+                                Prix unitaire
+                            </th>
+                            <th class="talbe__heading" scope="col">
+                                Exemplaires
+                            </th>
+                            <th class="talbe__heading" scope="col">
+                                Prix
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="table__body">
+                        @if (count($books))
+                            @foreach ($books as $book)
+                                <tr class="table__row">
+                                    <td class="talbe__data">{{ $loop->iteration }}</td>
+                                    <td class="talbe__data">
+                                        <img src="{{ asset('storage/covers/small_' . $book->cover) }}"
+                                             alt="Foto de profil"
+                                             width="250"
+                                             height="250">
+                                    </td>
+                                    <td class="talbe__data">{{ $book->title }}</td>
+                                    <td class="talbe__data">
+                                        @currency($book->price)
+                                    </td>
+                                    <td class="talbe__data talbe__data--action">
+                                        <div class="form-group">
+                                            <label for="amount{{ $book->id }}"
+                                                   class="form-label">{{ __('Examplaires') }}</label>
+
+                                            <input id="amount{{ $book->id }}" type="number"
+                                                   class="form-control amount-input @error('amount') is-invalid @enderror"
+                                                   name="amount[{{ $book->id }}]"
+                                                   value="{{ $amount ?? (old('amount') ?? 1) }}" required
+                                                   placeholder="0" min="0" data-price="{{ $book->price }}"
+                                                   data-id="{{ $book->id }}">
+
+                                            @error('title')
+                                                <p class="invalid-feedback" role="alert">
+                                                    {{ $message }}
+                                                </p>
+                                            @enderror
+                                        </div>
+                                    </td>
+                                    <td class="talbe__data" id="price-{{ $book->id }}">
+                                        @currency($book->price)
+                                    </td>
+
+                                </tr>
+                            @endforeach
+                        @else
+                            <tr class="table__row">
+                                <td class="talbe__data table__data--no-data" colspan="7">
+                                    Aucun livre ajouté
+                                </td>
+                            </tr>
+                        @endif
+
+                    </tbody>
+                    <tfoot>
+                        <tr class="table__row">
+                            <th class="talbe__data table__data--no-data" colspan="5">
+                                Total
+                            </th>
+                            <td class="talbe__data table__data--no-data" colspan="1" id="total">
+                                @currency($total ?? 0)
                             </td>
                         </tr>
-                    @endif
-
-                </tbody>
-                <tfoot>
-                    <tr class="table__row">
-                        <th class="talbe__data table__data--no-data" colspan="5">
-                            Total
-                        </th>
-                        <td class="talbe__data table__data--no-data" colspan="1" id="total">
-                            @currency($total ?? 0)
-                        </td>
-                    </tr>
-                </tfoot>
-            </table>
+                    </tfoot>
+                </table>
+            </div>
 
             <div class="form-group">
                 <button type="submit" class="btn btn-submit">

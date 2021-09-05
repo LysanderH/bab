@@ -1101,3 +1101,120 @@ td {
 .message b {
   font-weight: 800;
 }
+
+.bac__name {
+  font-family: "Libre Franklin", sans-serif;
+  font-size: 22px;
+  font-size: 1.375rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.book-card__checkbox {
+  position: absolute;
+  opacity: 0;
+  text-align: -999999em;
+}
+.book-card__checkbox:checked ~ .book-card__label {
+  border: 3px solid #5F8124;
+}
+.book-card__heading {
+  font-family: "Libre Franklin", sans-serif;
+  font-size: 20px;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-weight: 600;
+}
+.book-card__img {
+  margin: 0 auto 0.5rem auto;
+  max-height: 250px;
+  width: auto;
+}
+.book-card__label {
+  display: flex;
+  flex-direction: column;
+  max-width: 330px;
+  width: 100%;
+  flex-wrap: wrap;
+  padding: 1rem;
+  border-radius: 5px;
+  border: 1px solid #707070;
+}
+.book-card__price {
+  font-family: "Libre Franklin", sans-serif;
+  font-size: 16px;
+  font-size: 1rem;
+  font-weight: 600;
+  align-self: flex-end;
+}
+
+.book-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+.book-list__item {
+  margin: 0 1rem 1rem 0;
+  width: 100%;
+  max-width: 330px;
+}
+
+.book-form {
+  max-width: 1088px;
+  margin: 0 auto;
+}
+
+.u-books__heading {
+  font-family: "Libre Franklin", sans-serif;
+  font-size: 20px;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-weight: 600;
+}
+.u-books__img {
+  margin: 0 auto 0.5rem auto;
+  max-height: 250px;
+  width: auto;
+}
+.u-books__item {
+  display: flex;
+  flex-direction: row;
+  max-width: 330px;
+  width: 100%;
+  flex-wrap: wrap;
+  padding: 1rem;
+  border-radius: 5px;
+  border: 1px solid #707070;
+  margin: 0 1rem 1rem 0;
+}
+.u-books__price {
+  font-family: "Libre Franklin", sans-serif;
+  font-size: 16px;
+  font-size: 1rem;
+  font-weight: 600;
+  justify-self: flex-end;
+}
+
+.u-order__books {
+  display: flex;
+  flex-wrap: wrap;
+}
+.u-order__item {
+  width: 100%;
+}
+.u-order__list {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1088px;
+  margin: 0 auto;
+}
+.u-order__wrapper {
+  padding: 1rem;
+  border-radius: 5px;
+  border: 1px solid #707070;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  background-color: #eee;
+}

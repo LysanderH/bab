@@ -13,26 +13,29 @@
         @include('layout.success')
         @include('layout.error')
         <section class="controls" aria-label="Navigation de la ressource">
-            <h2 class="controls__heading sr-only" role="heading" aria-level="2">Navigation de la ressource</h2>
+            <h2 class="sr-only controls__heading" role="heading" aria-level="2">Navigation de la ressource</h2>
             <div class="controls__wrapper">
                 <a href="{{ route('student.order.create') }}" class="controls__link">Passer une commande</a>
             </div>
         </section>
 
-        <ul class="order__list">
+        <ul class="u-order__list">
             @foreach ($orders as $order)
-                <li class="order__item">
-                    <time class="order__date"
-                          datetime="{{ $order->created_at }}">{{ $order->created_at->format('d/m/Y à H:i') }}</time>
-                    <span>@currency($order->total)</span>
-                    <ul class="order__books">
-                        @foreach ($order->books as $book)
-                            <li class="books__item">
+                <li class="u-order__item">
+                    <div class="u-order__wrapper">
+                        <time class="u-order__date"
+                              datetime="{{ $order->created_at }}">{{ $order->created_at->format('d/m/Y à H:i') }}</time>
+                        <span class="u-order__total">@currency($order->total)</span>
+                    </div>
+                    <ul class="u-order__books">
+                        @foreach ($order->books->sortBy('title') as $book)
+                            <li class="u-books__item">
                                 <img src="{{ asset('storage/covers/small_' . $book->cover) }}" alt="Foto de profil"
                                      width="250"
-                                     height="250">
-                                <span class="books__heading">{{ $book->title }}</span>
-                                <span class="books__price">@currency($book->pivot->current_price)</span>
+                                     height="250"
+                                     class="u-books__img">
+                                <span class="u-books__heading">{{ $book->title }}</span>
+                                <span class="u-books__price">@currency($book->pivot->current_price)</span>
                             </li>
                         @endforeach
                     </ul>

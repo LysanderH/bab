@@ -42,9 +42,9 @@ class Table extends Component
         $period = Period::with('orders.user', 'orders.status')->where('active', true)->first();
 
         if ($period) {
-            $orders = $period->orders()->paginate(25);
+            $orders = $period->orders()->orderByDesc('created_at')->paginate(25);
         } else {
-            $orders = Order::with('user', 'status')->get();
+            $orders = Order::with('user', 'status')->orderByDesc('created_at')->get();
         }
 
         return view('livewire.table', [
