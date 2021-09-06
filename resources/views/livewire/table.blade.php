@@ -39,7 +39,7 @@
                                     <input type="hidden" value="$order->id">
                                     <select name="status"
                                             wire:change="changeStatus({{ $order->id }}, $event.target.value)"
-                                            class=".select">
+                                            class="select">
                                         @foreach ($statuses as $status)
                                             <option value="{{ $status->id }}"
                                                     @if ($status->id === $order->status_id) selected @endif>{{ $status->name }}</option>
@@ -64,5 +64,7 @@
             </tbody>
         </table>
     </div>
-    {{ $orders->links() }}
+    @if (count($orders))
+        {{ $orders->links() }}
+    @endif
 </div>

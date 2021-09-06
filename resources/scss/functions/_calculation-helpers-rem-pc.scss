@@ -1,10 +1,10 @@
 // font size calculation in rem
 @function calculateRem($size) {
-  $remSize: $size / $root-font-size;
-  @return $remSize * 1rem;
+    $remSize: $size / $root-font-size;
+    @return $remSize * 1rem;
 }
 
 // px to %
 @function calc-percent($target, $container) {
-  @return ($target / $container) * 100%;
+    @return ($target / $container) * 100%;
 }
